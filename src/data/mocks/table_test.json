@@ -1,0 +1,14 @@
+{
+    "students": [
+        {
+            "id": "1",
+            "name": "Abson Jimmy",
+            "isAbsenced": false
+        },
+        {
+            "id": "2",
+            "name": "Anthony Jimmy",
+            "isAbsenced": true
+        }
+    ]
+}

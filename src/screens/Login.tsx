@@ -9,7 +9,9 @@ type SocialButtonProps = {
 }
 export const SocialButton = ({ icon, title, color, customClass }: SocialButtonProps) => {
     return (
-        <div className={`bg-[${color}] rounded-xl p-3 flex flex-row self-center w-72 ${customClass}`}>
+        <div style={{
+            backgroundColor: color
+        }} className={`rounded-xl p-3 flex flex-row self-center w-72 ${customClass}`}>
             {
                 React.createElement(icon, { color: 'white', size: 25 })
             }
@@ -17,7 +19,6 @@ export const SocialButton = ({ icon, title, color, customClass }: SocialButtonPr
         </div>
     )
 }
-
 const Login = () => {
     return (
         <div className='bg-gray-300 min-w-full min-h-screen flex flex-row items-center justify-center'>

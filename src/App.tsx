@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { ComponentClass, useState } from 'react';
 import Home from './screens/Home';
 import { AiOutlineAppstoreAdd, AiOutlineBell, AiOutlineMail, AiOutlineNotification } from 'react-icons/ai'
 import SideBarButton from './screens/components/SideBarButton';
@@ -11,7 +11,7 @@ interface ITab {
 }
 
 function App() {
-  // const [currentPage, setCurrentPage] = useState<any>(Home)
+  const [currentPage, setCurrentPage] = useState<JSX.Element>(<Home />)
 
   return (
     // Master
@@ -31,10 +31,10 @@ function App() {
 
       {/* Detail */}
       <div className='flex-1 bg-white overflow-scroll'>
-        <Home />
-        {/* {
-          React.createElement(currentPage)
-        } */}
+        {/* <Home /> */}
+        {
+          currentPage
+        }
       </div>
 
     </div>

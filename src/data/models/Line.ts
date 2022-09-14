@@ -9,7 +9,7 @@ export enum LinePosition {
     Fiveth
 }
 
-export interface ILine extends ICommon {
+export interface ILine {
     position: LinePosition
     tables: ITable[]
 }

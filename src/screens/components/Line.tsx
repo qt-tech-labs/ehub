@@ -3,7 +3,7 @@ import { ILine } from '../../data/models/Line'
 import Table from './Table'
 const Line = (line: ILine) => {
     return (
-        <div className='flex overflow-scroll my-3'>
+        <div className='flex overflow-scroll my-3 py-5'>
             {
                 line ? (
                     line.tables.map(table => {

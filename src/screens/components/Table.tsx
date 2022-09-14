@@ -1,6 +1,9 @@
 import React from 'react'
+import { AiOutlineEdit, AiOutlineSolution } from 'react-icons/ai'
 import { IStudent } from '../../data/models/Student'
 import { ITable } from '../../data/models/Table'
+import { setEditingStudent } from '../../data/states/features/class/classSlice'
+import { useAppDispatch } from '../../data/states/hooks'
 
 type TableProps = {
     table?: ITable
@@ -14,9 +17,20 @@ type SeatProps = {
 }
 
 const Seat = ({ student, isFirst }: SeatProps) => {
+    const dispatch = useAppDispatch()
+    const onSeatClick = (student: IStudent) => {
+        console.log("Clicked!")
+        dispatch(setEditingStudent(student))
+    }
     return (
-        <div className={`${student.isAbsenced ? 'bg-secondary' : ''} hover:scale-[1.07] transition-all cursor-pointer ${isFirst ? 'rounded-t-md' : 'rounded-b-md'}  flex justify-center items-center flex-1 w-32`}>
-            {student.name}
+        <div className={`group ${student.isAbsenced ? 'bg-secondary' : ''} ${isFirst ? 'rounded-t-md' : 'rounded-b-md'} flex flex-col justify-center items-center flex-1 w-32 hover:scale-[1.07] transition-all`}>
+            <span className={` group-hover:font-bold text-lg transition-all`}>{student.name}</span>
+            <div className='group-hover:opacity-100 opacity-0 flex flex-row border px-2 py-[0.1rem] border-gray-400 rounded-md transition-opacity'>
+                <AiOutlineSolution className='cursor-pointer text-gray-400 hover:text-white' onClick={() => {
+                    onSeatClick(student)
+                }} />
+                <AiOutlineEdit className='cursor-pointer text-gray-400 hover:text-white' />
+            </div>
         </div>
     )
 }
@@ -37,7 +51,6 @@ const Table = ({ table, customeClass }: TableProps) => {
                                 </>
                             )
                         }
-
                     </>
                 )
             }

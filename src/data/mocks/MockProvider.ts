@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { IClass } from "../models/IClass";
-import { ILine, LinePosition } from "../models/Line"
+import { LinePosition } from "../models/Line"
 import { ITable } from "../models/Table"
 import tableJson from './table_test.json'
 import classJson from './class_test.json'
@@ -11,7 +11,7 @@ function getTables(classId: string, line: LinePosition) {
     while (index < 12) {
 
         // Json parse is the best way to pass object as value in JS
-        const table = <ITable>JSON.parse(JSON.stringify(tableJson))
+        const table = JSON.parse(JSON.stringify(tableJson)) as ITable
 
         table.classID = classId
         table.line = line
@@ -37,14 +37,12 @@ function getClasses() {
         console.log("Index:", index)
         const classID = uuidv4()
 
-        const classInstance = <IClass>JSON.parse(JSON.stringify(classJson))
+        const classInstance = JSON.parse(JSON.stringify(classJson)) as IClass
         classInstance.id = classID
         classInstance.lines = 5
         classInstance.name = "Lớp " + index
         var classTables: ITable[] = []
-        const keys: (keyof typeof LinePosition)[] = <(keyof typeof LinePosition)[]>Object.keys(LinePosition);
         for (const key of [LinePosition.First, LinePosition.Second, LinePosition.Third, LinePosition.Fourth, LinePosition.Fiveth]) {
-            const xadf = LinePosition[key];
             const tables = getTables(classID, Number(key))
             classTables.push(...tables)
         }

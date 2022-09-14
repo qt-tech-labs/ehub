@@ -1,9 +1,10 @@
 import React from 'react'
-import { AiOutlineEdit, AiOutlineSolution } from 'react-icons/ai'
+import { AiOutlineSolution } from 'react-icons/ai'
 import { IStudent } from '../../data/models/Student'
 import { ITable } from '../../data/models/Table'
-import { setEditingStudent } from '../../data/states/features/class/classSlice'
-import { useAppDispatch } from '../../data/states/hooks'
+import { selectCurrentEdittingStudent, setEditingStudent } from '../../data/states/features/class/classSlice'
+import { useAppDispatch, useAppSelector } from '../../data/states/hooks'
+import styles from './table.module.css'
 
 type TableProps = {
     table?: ITable
@@ -18,18 +19,32 @@ type SeatProps = {
 
 const Seat = ({ student, isFirst }: SeatProps) => {
     const dispatch = useAppDispatch()
+    const currentStudent = useAppSelector(selectCurrentEdittingStudent)
+
     const onSeatClick = (student: IStudent) => {
         console.log("Clicked!")
         dispatch(setEditingStudent(student))
     }
+    // const wave =${currentStudent?.id == student.id ? styles.activeStudent : ''} 
+    const basicCss = "w-14 h-14 rounded-full object-cover shadow-lg border border-white"
+    const textCss = "cursor-pointer items-center bg-green-700 w-full h-0 group-hover:h-fit opacity-0 group-hover:opacity-100 flex flex-row p-2 absolute bottom-0 transition-all"
+
     return (
-        <div className={`group ${student.isAbsenced ? 'bg-secondary' : ''} ${isFirst ? 'rounded-t-md' : 'rounded-b-md'} flex flex-col justify-center items-center flex-1 w-32 hover:scale-[1.07] transition-all`}>
-            <span className={` group-hover:font-bold text-lg transition-all`}>{student.name}</span>
-            <div className='group-hover:opacity-100 opacity-0 flex flex-row border px-2 py-[0.1rem] border-gray-400 rounded-md transition-opacity'>
-                <AiOutlineSolution className='cursor-pointer text-gray-400 hover:text-white' onClick={() => {
-                    onSeatClick(student)
-                }} />
-                <AiOutlineEdit className='cursor-pointer text-gray-400 hover:text-white' />
+        <div className={`relative group ${student.isAbsenced ? 'bg-secondary' : ''} ${isFirst ? 'rounded-t-md' : 'rounded-b-md'} flex flex-col justify-center items-center flex-1 w-32 transition-all`}>
+            <div className={`${student.id == currentStudent?.id ? styles.activeStudent : ''} bg-white w-14 h-14 rounded-full absolute top-5`} />
+            {/* <div className='bg-black w-16 h-16 rounded-full absolute top-5' />
+            <div className='bg-black w-16 h-16 rounded-full absolute top-5' /> */}
+            <img src={"https://picsum.photos/200/300"}
+                alt="avatar"
+                className={` absolute  ${basicCss}  top-5`} />
+            <span className={`text-lg transition-all mt-auto`}>
+                {student.name}
+            </span>
+            <div onClick={() => {
+                onSeatClick(student)
+            }} className={`${isFirst ? 'rounded-t-md' : 'rounded-b-md'} ${textCss}`}>
+                <AiOutlineSolution className='text-white hover:text-white' />
+                <span className='text-white'>View details</span>
             </div>
         </div>
     )

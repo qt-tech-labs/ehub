@@ -6,7 +6,6 @@ import SideBarButton from './screens/components/SideBarButton';
 import Login from './screens/Login';
 import Modal from './screens/components/Modal';
 import { useAppSelector } from './data/states/hooks';
-import { IStudent } from './data/models/Student';
 
 
 interface ITab {

@@ -11,11 +11,11 @@ const ClassPill = ({ classRoom }: ClassPillTypes) => {
     const appDispatch = useAppDispatch()
     const currentClass = useAppSelector(selectCurrentClass)
     return (
-        <span onClick={() => {
+        <div onClick={() => {
             appDispatch(setCurrentClass(classRoom))
-        }} className={`hover:scale-[1.2] transition-all cursor-pointer mx-2 px-5 py border-2 ${classRoom.id == currentClass?.id ? 'border-secondary text-secondary scale-[1.2]' : 'border-primary text-primary'} rounded-full shadow-lg`}>
+        }} className={`text-center hover:scale-[1.2] w-[8rem] transition-all cursor-pointer mx-2 px-5 py border-2 ${classRoom.id === currentClass?.id ? 'border-secondary text-secondary scale-[1.2]' : 'border-primary text-primary'} rounded-full shadow-lg`}>
             {classRoom.name}
-        </span>
+        </div>
     )
 }
 

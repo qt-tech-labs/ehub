@@ -10,7 +10,7 @@ const Line = (line: ILine) => {
                     line ? (
                         line.tables.map(table => {
                             return (
-                                <Table table={table} customeClass="mx-2" />
+                                <Table key={table.id} table={table} customeClass="mx-2" />
                             )
                         })
                     ) : "N/A"

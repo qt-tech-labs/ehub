@@ -1,7 +1,7 @@
 import './App.css';
-import React, { ComponentClass, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Home from './screens/Home';
-import { AiOutlineAppstoreAdd, AiOutlineBell, AiOutlineMail, AiOutlineNotification, AiFillCloseCircle } from 'react-icons/ai'
+import { AiOutlineAppstoreAdd, AiOutlineBell, AiOutlineMail } from 'react-icons/ai'
 import SideBarButton from './screens/components/SideBarButton';
 import Login from './screens/Login';
 import Modal from './screens/components/Modal';
@@ -50,7 +50,7 @@ function App() {
           currentPage
         }
         {
-          isEditting && (generateContent())
+          false && isEditting && (generateContent())
         }
       </div>
 

@@ -8,7 +8,7 @@ import classJson from './class_test.json'
 function getTables(classId: string, line: LinePosition) {
     var index = 1
     const tables: ITable[] = []
-    while (index < 12) {
+    while (index < 13) {
 
         // Json parse is the best way to pass object as value in JS
         const table = JSON.parse(JSON.stringify(tableJson)) as ITable

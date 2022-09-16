@@ -16,10 +16,12 @@ function getTables(classId: string, line: LinePosition) {
         table.classID = classId
         table.line = line
         table.position = index
+        // Can not be used due to the restriction of Firebase User interface
         table.students!.at(0)!.id = uuidv4()
         table.students!.at(0)!.name = "Sample " + index + "-1"
         table.students!.at(0)!.isAbsenced = Math.random() < 0.2
 
+        // Can not be used due to the restriction of Firebase User interface
         table.students!.at(1)!.id = uuidv4()
         table.students!.at(1)!.name = "Sample " + index + "-2"
         table.students!.at(1)!.isAbsenced = Math.random() < 0.4

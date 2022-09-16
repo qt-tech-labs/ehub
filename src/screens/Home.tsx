@@ -54,6 +54,7 @@ const Home = () => {
         return content
     }
 
+    // Start to count the students
     const onCheckRoll = () => {
         if (rooling.active) {// Reset to the display mode
             setStudentIndex(0)
@@ -69,6 +70,7 @@ const Home = () => {
         }
     }
 
+    // On checking the absence
     const onRoll = () => {
         console.log(lineIndex, tableIndex, studentIndex)
         if (lineIndex < numberOfLine) {

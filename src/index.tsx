@@ -5,13 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './data/states/store';
+import { LocalStorage } from './data/repo/LocalStorage';
 
 const rootDom = document.getElementById('root')
 const root = ReactDOM.createRoot(rootDom!);
 root.render(
   // <React.StrictMode>
   <Provider store={store}>
-    <App />
+    <App myStorage={LocalStorage.GetInstance()} />
   </Provider>
   // </React.StrictMode>
 );

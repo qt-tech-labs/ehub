@@ -1,4 +1,3 @@
-import { ICommon } from "./Common";
 import { ITable } from "./Table";
 
 export enum LinePosition {

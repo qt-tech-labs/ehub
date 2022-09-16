@@ -1,10 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
+import authenticationSlice from './features/authentication/authenticationSlice'
 import classSlice from './features/class/classSlice'
 
 export const store = configureStore({
     reducer: {
-        classR: classSlice
-    }
+        classR: classSlice,
+        authentication: authenticationSlice
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: false
+    }),
 })
 
 

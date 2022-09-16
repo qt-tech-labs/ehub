@@ -57,16 +57,14 @@ class Rest implements IRest {
         return Constants.BaseURL + path
     }
 
-    get<T>(path: string): Promise<T> {
+    async get<T>(path: string): Promise<T> {
         const fullPath = this.buildPath(path)
 
-        return fetch(fullPath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new AppError("Request failed: " + response.status, response.text())
-                }
-                return response.json()
-            })
+        const response = await fetch(fullPath)
+        if (!response.ok) {
+            throw new AppError("Request failed: " + response.status, response.text())
+        }
+        return await response.json()
     }
     post<T>(path: string, data: any): Promise<IResponse<T, IError>> {
         throw new Error("Method not implemented.")
@@ -77,3 +75,6 @@ class Rest implements IRest {
 
 
 }
+
+
+export { IResponse, IError, MyResponse, Rest }

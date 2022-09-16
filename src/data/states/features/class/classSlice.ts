@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IClass } from "../../../models/IClass";
-import { ILine, LinePosition } from "../../../models/Line";
+import { ILine } from "../../../models/Line";
 import { IStudent } from "../../../models/Student";
-import { ITable } from "../../../models/Table";
 import { RootState } from "../../store";
 
 interface IClassState {
@@ -44,10 +43,7 @@ export const { setEditingStudent, setCurrentClass } = classSlice.actions
 
 export const selectCurrentEdittingStudent = (state: RootState) => state.classR.currentEditingStudent
 export const selectCurrentClass = (state: RootState) => state.classR.currentClass
-// TODO: group by
-type LResult = {
-    string: ITable[]
-}
+
 export const selectClassLines = (state: RootState) => {
     const lines: Array<ILine> = []
     state.classR.currentClass?.tables.forEach((item) => {

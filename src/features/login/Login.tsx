@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import { AiFillFacebook, AiFillGoogleSquare, AiFillTwitterSquare } from 'react-icons/ai'
-import { setCurrentUser } from '../data/states/features/authentication/authenticationSlice'
-import { useAppDispatch } from '../data/states/hooks'
-import { IAuthentication, IUser, LoginMethod } from '../services/authentication/fbase'
-import Button from './components/Button'
-import EditText from './components/EditText'
+import { setCurrentUser } from './loginSlice'
+import { useAppDispatch } from '../../hooks'
+import { IAuthentication, IUser, LoginMethod } from '../../data/providers/authentication/fbase'
+import Button from '../../components/Button'
+import EditText from '../../components/EditText'
 
 type SocialButtonProps = {
     icon: any,

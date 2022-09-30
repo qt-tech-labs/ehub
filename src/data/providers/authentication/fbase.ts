@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { Auth, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, User } from 'firebase/auth'
-import Constants from '../../utils/Constants'
+import Constants from '../../../utils/Constants'
 
 export enum LoginMethod {
     Email,
@@ -14,7 +14,6 @@ export interface IUser extends User {
 type AuthenResult<T> = (result: T | null, message?: string) => void
 
 export interface IAuthentication<T> {
-    currentUser: T | null
     login(method: LoginMethod, data: any, onResult: AuthenResult<T>): void
     signUp(email: string, pwd: string, onResult: AuthenResult<T>): void
     resetPwd(email: string, onResult: AuthenResult<string>): void
@@ -33,7 +32,6 @@ export class FirebaseAuthen implements IAuthentication<User> {
     }
 
     auth: Auth
-    currentUser: User | null
 
     constructor() {
         const firebaseConfig = {
@@ -47,7 +45,6 @@ export class FirebaseAuthen implements IAuthentication<User> {
         const app = initializeApp(firebaseConfig)
         this.auth = getAuth(app)
         this.auth.useDeviceLanguage()
-        this.currentUser = null
         // Obsever the changes
         onAuthStateChanged(this.auth, user => {
             if (user) {

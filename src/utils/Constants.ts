@@ -7,6 +7,10 @@ const Constants = {
     },
     StorageKey: {
         user: "oiyrhkasjgidfouajslfgioauyhfk"
+    },
+    ServiceNames: {
+        storage: "appStorage",
+        authentication: "authentication"
     }
 }
 

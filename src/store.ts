@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import authenticationSlice from './features/authentication/authenticationSlice'
-import classSlice from './features/class/classSlice'
+import classSlice from './features/home/homeSlice'
+import authenticationSlice from './features/login/loginSlice'
 
 export const store = configureStore({
     reducer: {

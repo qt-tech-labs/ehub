@@ -1,4 +1,4 @@
-import { ILocalStorage } from "../data/repo/LocalStorage";
+import { ILocalStorage } from "./LocalStorage";
 
 export class TestStorage implements ILocalStorage {
     getItem(key: string) {

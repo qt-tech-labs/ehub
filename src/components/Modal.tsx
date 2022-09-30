@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai'
-import { setEditingStudent } from '../../data/states/features/class/classSlice'
-import { useAppDispatch } from '../../data/states/hooks'
+import { setEditingStudent } from '../features/home/homeSlice'
+import { useAppDispatch } from '../hooks'
 
 type ModalProps = {
     content?: any,

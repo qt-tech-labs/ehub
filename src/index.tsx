@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { store } from './data/states/store';
-import { LocalStorage } from './data/repo/LocalStorage';
+import { store } from './store';
+import { LocalStorage } from './data/providers/LocalStorage';
 
 const rootDom = document.getElementById('root')
 const root = ReactDOM.createRoot(rootDom!);

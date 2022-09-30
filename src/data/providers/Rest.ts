@@ -64,7 +64,7 @@ class Rest implements IRest {
         if (!response.ok) {
             throw new AppError("Request failed: " + response.status, response.text())
         }
-        return await response.json()
+        return response.json()
     }
     post<T>(path: string, data: any): Promise<IResponse<T, IError>> {
         throw new Error("Method not implemented.")
@@ -72,8 +72,6 @@ class Rest implements IRest {
     delete<T>(path: string, data: any): Promise<IResponse<T, IError>> {
         throw new Error("Method not implemented.")
     }
-
-
 }
 
 

@@ -1,4 +1,3 @@
-import { IUser } from "../../services/authentication/fbase"
 import { ICommon } from "./Common"
 
 interface IStrike extends ICommon {

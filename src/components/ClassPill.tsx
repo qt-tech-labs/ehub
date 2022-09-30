@@ -1,7 +1,7 @@
 import React from "react"
-import { IClass } from "../../data/models/IClass"
-import { selectCurrentClass, setCurrentClass } from "../../data/states/features/class/classSlice"
-import { useAppDispatch, useAppSelector } from "../../data/states/hooks"
+import { IClass } from "../data/models/IClass"
+import { selectCurrentClass, setCurrentClass } from "../features/home/homeSlice"
+import { useAppDispatch, useAppSelector } from "../hooks"
 
 type ClassPillTypes = {
     classRoom: IClass

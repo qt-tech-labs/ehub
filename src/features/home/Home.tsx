@@ -1,11 +1,12 @@
-import React from "react"
+import React, { Suspense } from "react"
 import { useState } from "react"
-import Line from "./components/Line"
-import MockProvider from "../data/mocks/MockProvider"
+import MockProvider from "../../data/mocks/MockProvider"
 import { IoCheckmarkCircleOutline as CheckMark, IoStopCircleOutline as StopIcon } from "react-icons/io5"
-import { useAppDispatch, useAppSelector } from "../data/states/hooks"
-import { selectClassLines, selectCurrentClass, setEditingStudent } from "../data/states/features/class/classSlice"
-import ClassPill from "./components/ClassPill"
+import { useAppDispatch, useAppSelector } from "../../hooks"
+import { selectClassLines, selectCurrentClass, setEditingStudent } from "./homeSlice"
+const ClassPill = React.lazy(() => import('../../components/ClassPill'))
+const Line = React.lazy(() => import('../../components/Line'))
+const Loading = React.lazy(() => import('../../components/Loading'))
 
 type Rolling = {
     active: Boolean
@@ -46,7 +47,9 @@ const Home = () => {
         const content = currentLines.map((line) => {
             return (
                 <>
-                    <Line {...line} />
+                    <Suspense fallback={<Loading />}>
+                        <Line {...line} />
+                    </Suspense>
                     <div className="bg-gray-300 h-[2px]" />
                 </>
             )
@@ -115,7 +118,10 @@ const Home = () => {
                 <span className='text-2xl font-bold'>Sơ đồ lớp</span>
                 <div className="flex-1 flex flex-row overflow-scroll h-20 items-center justify-center pl-5">
                     {
-                        classes.map((cla) => (<ClassPill classRoom={cla} />))
+                        classes.map((cla) => (<Suspense fallback={<div> Loading</div>}>
+                            <ClassPill classRoom={cla} />
+                        </Suspense>
+                        ))
                     }
                 </div>
             </div>

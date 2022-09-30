@@ -1,9 +1,9 @@
 import React from 'react'
 import { AiOutlineSolution } from 'react-icons/ai'
-import { IStudent } from '../../data/models/Student'
-import { ITable } from '../../data/models/Table'
-import { selectCurrentEdittingStudent, setEditingStudent } from '../../data/states/features/class/classSlice'
-import { useAppDispatch, useAppSelector } from '../../data/states/hooks'
+import { IStudent } from '../data/models/Student'
+import { ITable } from '../data/models/Table'
+import { selectCurrentEdittingStudent, setEditingStudent } from '../features/home/homeSlice'
+import { useAppDispatch, useAppSelector } from '../hooks'
 import styles from './table.module.css'
 
 type TableProps = {

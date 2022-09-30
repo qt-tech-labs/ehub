@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IClass } from "../../../models/IClass";
-import { ILine } from "../../../models/Line";
-import { IStudent } from "../../../models/Student";
+import { IClass } from "../../data/models/IClass";
+import { ILine } from "../../data/models/Line";
+import { IStudent } from "../../data/models/Student";
 import { RootState } from "../../store";
 
 interface IClassState {

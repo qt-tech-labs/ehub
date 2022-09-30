@@ -1,6 +1,7 @@
-import { IAuthentication, IUser, LoginMethod } from "./fbase";
+import { IUser } from "../../models/IUser";
+import { IAuthentication, LoginMethod } from "./fbase";
 
-export class SelfHostedAuthentication implements IAuthentication<IUser> {
+export class SelfHostedAuthentication implements IAuthentication {
     private static _instance: SelfHostedAuthentication
 
     public static GetInstance(): SelfHostedAuthentication {
@@ -18,7 +19,7 @@ export class SelfHostedAuthentication implements IAuthentication<IUser> {
     signUp(email: string, pwd: string, onResult: (result: IUser | null, message?: string | undefined) => void): void {
         throw new Error("Method not implemented.");
     }
-    resetPwd(email: string, onResult: (result: string | null, message?: string | undefined) => void): void {
+    resetPwd(email: string, onResult: (result: IUser | null, message?: string | undefined) => void): void {
         throw new Error("Method not implemented.");
     }
 

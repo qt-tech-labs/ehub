@@ -34,7 +34,7 @@ function App({ myStorage }: AppProps) {
   const isLogged = useAppSelector(selectIsLogin)
   const generateContent = () => {
     const content = (
-      <div>{isEditting ? isEditting.name : "N/A"}</div>
+      <div>{isEditting ? isEditting.displayName : "N/A"}</div>
     )
     return (
       <Modal content={content} />

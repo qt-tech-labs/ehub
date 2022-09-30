@@ -1,4 +1,4 @@
-import Constants from "../../utils/Constants"
+import Constants from "../../../utils/Constants"
 
 interface IPath { }
 type ApiRoute<TRoute extends string> = { [key in TRoute]: string }

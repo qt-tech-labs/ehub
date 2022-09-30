@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { Auth, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, User } from 'firebase/auth'
 import Constants from '../../../utils/Constants'
+import { IUser } from '../../models/IUser'
 
 export enum LoginMethod {
     Email,
@@ -8,23 +9,20 @@ export enum LoginMethod {
     FB
 }
 
-export interface IUser extends User {
-}
+type AuthenResult = (result: IUser | null, message?: string) => void
 
-type AuthenResult<T> = (result: T | null, message?: string) => void
-
-export interface IAuthentication<T> {
-    login(method: LoginMethod, data: any, onResult: AuthenResult<T>): void
-    signUp(email: string, pwd: string, onResult: AuthenResult<T>): void
-    resetPwd(email: string, onResult: AuthenResult<string>): void
+export interface IAuthentication {
+    login(method: LoginMethod, data: any, onResult: AuthenResult): void
+    signUp(email: string, pwd: string, onResult: AuthenResult): void
+    resetPwd(email: string, onResult: AuthenResult): void
 }
 
 
 
-export class FirebaseAuthen implements IAuthentication<User> {
-    private static _instance: IAuthentication<User>
+export class FirebaseAuthen implements IAuthentication {
+    private static _instance: IAuthentication
 
-    public static GetInstance(): IAuthentication<User> {
+    public static GetInstance(): IAuthentication {
         if (!this._instance) {
             this._instance = new FirebaseAuthen()
         }
@@ -52,24 +50,24 @@ export class FirebaseAuthen implements IAuthentication<User> {
             }
         })
     }
-    signUp(email: string, pwd: string, onResult: AuthenResult<IUser>): void {
+    signUp(email: string, pwd: string, onResult: AuthenResult): void {
         createUserWithEmailAndPassword(this.auth, email, pwd)
             .then((user) => {
-                onResult(user.user)
+                onResult(user.user as IUser)
             })
             .catch(error => {
                 onResult(null, error.message)
             })
     }
-    resetPwd(email: string, onResult: AuthenResult<string>): void {
+    resetPwd(email: string, onResult: AuthenResult): void {
         throw new Error('Method not implemented.')
     }
-    login(method: LoginMethod, data: any, onResult: AuthenResult<User>): void {
+    login(method: LoginMethod, data: any, onResult: AuthenResult): void {
         switch (method) {
             case LoginMethod.Email:
                 signInWithEmailAndPassword(this.auth, data.email, data.pwd)
                     .then((user) => {
-                        onResult(user.user)
+                        onResult(user.user as IUser)
                     })
                     .catch(error => {
                         onResult(null, error.message)
@@ -86,7 +84,7 @@ export class FirebaseAuthen implements IAuthentication<User> {
 
                 signInWithPopup(this.auth, provider)
                     .then((user) => {
-                        onResult(user.user)
+                        onResult(user.user as IUser)
                     })
                     .catch(error => {
                         onResult(null, error.message)

@@ -28,7 +28,7 @@ const Seat = ({ student, isFirst }: SeatProps) => {
 
     const basicCss = "w-14 h-14 rounded-full object-cover shadow-lg border border-white"
     const textCss = "cursor-pointer items-center bg-green-700 w-full h-0 group-hover:h-fit opacity-0 group-hover:opacity-100 flex flex-row p-2 absolute bottom-0 transition-all"
-    const animatedBg = (<div className={`${student.id === currentStudent?.id ? styles.activeStudent : ''} bg-red-500 w-14 h-14 rounded-full absolute top-5`} />)
+    const animatedBg = (<div className={`${student.uid === currentStudent?.uid ? styles.activeStudent : ''} bg-red-500 w-14 h-14 rounded-full absolute top-5`} />)
     return (
         <div className={`relative group ${student.isAbsenced ? 'bg-secondary' : ''} ${isFirst ? 'rounded-t-md' : 'rounded-b-md'} flex flex-col justify-center items-center flex-1 w-32 transition-all`}>
             {animatedBg}
@@ -37,7 +37,7 @@ const Seat = ({ student, isFirst }: SeatProps) => {
                 alt="avatar"
                 className={` absolute  ${basicCss}  top-5`} />
             <span className={`text-lg transition-all mt-auto`}>
-                {student.name}
+                {student.fullname ?? student.displayName ?? student.email}
             </span>
             <div onClick={() => {
                 onSeatClick(student)

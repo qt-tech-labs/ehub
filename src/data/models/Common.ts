@@ -1,5 +1,5 @@
 export interface ICommon {
-    id: string
+    uid: string
     createdDate?: Date
     updateDate?: Date
     attachments?: IAttachment[]

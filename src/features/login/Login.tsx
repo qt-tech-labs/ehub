@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { AiFillFacebook, AiFillGoogleSquare, AiFillTwitterSquare } from 'react-icons/ai'
 import { setCurrentUser } from './loginSlice'
 import { useAppDispatch } from '../../hooks'
-import { IAuthentication, IUser, LoginMethod } from '../../data/providers/authentication/fbase'
+import { IAuthentication, LoginMethod } from '../../data/providers/authentication/fbase'
 import Button from '../../components/Button'
 import EditText from '../../components/EditText'
 
@@ -28,7 +28,7 @@ export const SocialButton = ({ icon, title, color, customClass, onClick }: Socia
 }
 
 type LoginProps = {
-    authenticationService: IAuthentication<IUser>
+    authenticationService: IAuthentication
 }
 
 const Login = ({ authenticationService }: LoginProps) => {

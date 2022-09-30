@@ -4,7 +4,21 @@ import { LinePosition } from "../models/Line"
 import { ITable } from "../models/Table"
 import tableJson from './table_test.json'
 import classJson from './class_test.json'
+import { faker } from "@faker-js/faker";
+import { IStudent } from "../models/Student";
 
+faker.locale = 'vi'
+
+function createStudent(student: IStudent) {
+    student.uid = uuidv4()
+    const sType = faker.name.sexType()
+    student.gender = sType
+    student.fullname = faker.name.fullName({
+        sex: sType
+    })
+    student.address = faker.address.streetAddress(true)
+    student.isAbsenced = Math.random() < 0.2
+}
 function getTables(classId: string, line: LinePosition) {
     var index = 1
     const tables: ITable[] = []
@@ -16,17 +30,10 @@ function getTables(classId: string, line: LinePosition) {
         table.classID = classId
         table.line = line
         table.position = index
-        // Can not be used due to the restriction of Firebase User interface
-        table.students!.at(0)!.id = uuidv4()
-        table.students!.at(0)!.name = "Sample " + index + "-1"
-        table.students!.at(0)!.isAbsenced = Math.random() < 0.2
 
-        // Can not be used due to the restriction of Firebase User interface
-        table.students!.at(1)!.id = uuidv4()
-        table.students!.at(1)!.name = "Sample " + index + "-2"
-        table.students!.at(1)!.isAbsenced = Math.random() < 0.4
+        createStudent(table.students![0])
+        createStudent(table.students![1])
         tables.push(table)
-
         index += 1
     }
     return tables
@@ -40,7 +47,7 @@ function getClasses() {
         const classID = uuidv4()
 
         const classInstance = JSON.parse(JSON.stringify(classJson)) as IClass
-        classInstance.id = classID
+        classInstance.uid = classID
         classInstance.lines = 5
         classInstance.name = "Lớp " + index
         var classTables: ITable[] = []
@@ -57,21 +64,7 @@ function getClasses() {
 }
 
 const MockProvider = {
-
     Classes: getClasses()
-
-    // Lines: (): ILine[] => {
-
-    //     const lines = [1, 2, 3, 4].map(ind => {
-    //         console.log(ind)
-    //         return {
-    //             id: "" + ind,
-    //             position: LinePosition.First,
-    //             tables: getTables()
-    //         } as ILine
-    //     })
-    //     return lines
-    // }
 }
 
 export default MockProvider

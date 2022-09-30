@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IUser } from "../../data/providers/authentication/fbase";
+import { IUser } from "../../data/models/IUser";
 import { RootState } from "../../store";
 
 interface IAuthenticationState {

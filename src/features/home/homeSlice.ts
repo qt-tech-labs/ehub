@@ -1,17 +1,30 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createEntityAdapter, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IClass } from "../../data/models/IClass";
 import { ILine } from "../../data/models/Line";
 import { IStudent } from "../../data/models/Student";
 import { RootState } from "../../store";
 
-interface IClassState {
+const classAdapter = createEntityAdapter<IHomeState>()
+
+// const initialState = classAdapter.getInitialState({
+//     status: 'idle'
+// })
+
+// Thunks functions
+
+// export const fetchClasses = createAsyncThunk("home/fetchClasses", async () => {
+
+// })
+
+// End of thunks
+
+interface IHomeState {
     lines?: ILine[]
     currentEditingStudent?: IStudent
     currentClass?: IClass
 
 }
-
-const initialState: IClassState = {
+const initialState: IHomeState = {
     lines: [],
     currentEditingStudent: undefined,
     currentClass: undefined

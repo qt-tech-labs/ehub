@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { Auth, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, User } from 'firebase/auth'
+import { Auth, createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import Constants from '../../../utils/Constants'
 import { IUser } from '../../models/IUser'
 
@@ -81,13 +81,12 @@ export class FirebaseAuthen implements IAuthentication {
             case LoginMethod.GG:
                 const provider = new GoogleAuthProvider()
                 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-
                 signInWithPopup(this.auth, provider)
                     .then((user) => {
                         onResult(user.user as IUser)
                     })
                     .catch(error => {
-                        onResult(null, error.message)
+                        onResult(null, JSON.stringify(error))
                     })
                 break
         }

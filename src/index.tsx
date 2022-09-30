@@ -5,16 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { LocalStorage } from './data/providers/LocalStorage';
+import { DIHub } from './utils/diContainer';
 
 const rootDom = document.getElementById('root')
 const root = ReactDOM.createRoot(rootDom!);
 root.render(
-  // <React.StrictMode>
   <Provider store={store}>
-    <App myStorage={LocalStorage.GetInstance()} />
+    <App {...DIHub} />
   </Provider>
-  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,6 +1,20 @@
-import { LocalStorage } from "../data/providers/LocalStorage"
-import { FirebaseAuthen } from "../data/providers/authentication/fbase"
+import { ILocalStorage, LocalStorage } from "../data/providers/LocalStorage"
+import { FirebaseAuthen, IAuthentication } from "../data/providers/authentication/fbase"
 import Constants from "./Constants"
+import { RestDefault } from "../data/providers/api/Rest"
+import IRest from "../data/providers/api/IRest"
+
+export interface IDIHub {
+    storage: ILocalStorage
+    authentication: IAuthentication
+    restAPI: IRest
+}
+
+export const DIHub: IDIHub = {
+    storage: LocalStorage.GetInstance(),
+    authentication: FirebaseAuthen.GetInstance(),
+    restAPI: RestDefault.GetInstance()
+}
 
 const createContainer = () => {
     let container = new DependencyInjectionContainer()
